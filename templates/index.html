@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRM GPA, CGPA Calculator & Grade Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="landing-container">
+        <h1>SRM GradeMate <br> GPA, CGPA & Grade Predictor</h1>
+        <p>Select any one to continue:</p>
+        <div class="button-container">
+            <a href="{{ url_for('gpa_calculator') }}" class="btn">GPA Calculator</a>
+            <a href="{{ url_for('grade_predictor') }}" class="btn">Grade Predictor</a>
+            <a href="{{ url_for('cgpa_calculator') }}" class="btn">CGPA Calculator</a> 
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</body>
+</html>
+

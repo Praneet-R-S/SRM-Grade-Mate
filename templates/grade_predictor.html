@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA & Grade Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Grade Predictor</h1>
+        <div id="internals">
+            {% for i in range(6) %}
+                <div class="row">
+                    <label>Internal {{ i+1 }} Marks (/60):</label>
+                    <input type="number" name="internal{{ i }}" min="0" max="60" placeholder="/60">
+                    <label>Desired Grade:</label>
+                    <select name="desired_grade{{ i }}">
+                        {% for grade in ["O", "A+", "A", "B+", "B", "C", "F", "W", "*", "Ab", "I"] %}
+                            <option value="{{ grade }}">{{ grade }}</option>
+                        {% endfor %}
+                    </select>
+                    <span class="predictedScore" id="predictedScore{{ i }}">Required: --/75</span>
+                </div>
+            {% endfor %}
+        </div>
+        <button id="addInternal">Add Internal</button>
+        <button id="removeInternal">Remove Internal</button>
+        <button id="predictScores">Predict Score</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+

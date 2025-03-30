@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA & Grade Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>GPA Calculator</h1>
+        <div id="subjects">
+            {% for i in range(6) %}
+            <div class="subject">
+                <input type="text" name="subject{{ i }}" placeholder="Subject Name">
+                <input type="number" name="credits{{ i }}" placeholder="Credits" min="1">
+                <select name="grade{{ i }}">
+                    {% for grade in ["O", "A+", "A", "B+", "B", "C", "F", "W", "*", "Ab", "I"] %}
+                        <option value="{{ grade }}">{{ grade }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% endfor %}
+        </div>
+        <button id="addSubject">Add Subject</button>
+        <button id="removeSubject">Remove Subject</button>
+        <button id="calculateGPA">Calculate GPA</button>
+        <p id="gpaResult"></p>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+

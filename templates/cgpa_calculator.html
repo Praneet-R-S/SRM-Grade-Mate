@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function generateGPAFields() {
+            let semesterCount = document.getElementById("semesters").value;
+            let gpaContainer = document.getElementById("gpaInputs");
+            gpaContainer.innerHTML = ""; // Clear previous inputs
+
+            for (let i = 1; i <= semesterCount; i++) {
+                let label = document.createElement("label");
+                label.innerText = `GPA for Semester ${i}: `;
+                
+                let input = document.createElement("input");
+                input.type = "number";
+                input.step = "0.01";
+                input.min = "0";
+                input.max = "10";
+                input.name = "gpa";
+                input.required = true;
+
+                gpaContainer.appendChild(label);
+                gpaContainer.appendChild(input);
+                gpaContainer.appendChild(document.createElement("br"));
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>CGPA Calculator</h2>
+    <form action="/calculate_cgpa" method="post">
+        <label for="semesters">Enter Number of Semesters:</label>
+        <input type="number" id="semesters" name="semesters" min="1" max="10" required oninput="generateGPAFields()">
+        <br><br>
+        
+        <div id="gpaInputs"></div>
+        <br>
+        <button type="submit">Calculate CGPA</button>
+
+    </form>
+    <p id="cgpaResult"></p>
+
+    <div id="cgpaResult" style="margin-top: 20px; font-size: 18px; color: #ffcc00;"></div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
